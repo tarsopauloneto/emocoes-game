@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dx40kn50y17oo"]
+
+[ext_resource type="PackedScene" uid="uid://cpat5vctx80kq" path="res://Scenes/alegria.tscn" id="1_rl6p2"]
+[ext_resource type="Texture2D" uid="uid://dqxh2qa3jooff" path="res://Assets/Sprites/divertidamente/nojinho1.png" id="2_jyspv"]
+[ext_resource type="Texture2D" uid="uid://bqtsmbihgbjq6" path="res://Assets/Sprites/divertidamente/nojinho2.png" id="3_dh26s"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3qsdj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jyspv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dh26s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.5
+}]
+
+[node name="Nojinho" instance=ExtResource("1_rl6p2")]
+
+[node name="Balloon" parent="." index="1"]
+position = Vector2(26, -84)
+frases = ["continue assim !", "ate onde voce consegue ir ?"]
+
+[node name="AnimatedSprite2D" parent="." index="2"]
+position = Vector2(17, -30)
+sprite_frames = SubResource("SpriteFrames_3qsdj")
+frame_progress = 0.0691152

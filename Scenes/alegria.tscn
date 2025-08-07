@@ -1,0 +1,95 @@
+[gd_scene load_steps=11 format=3 uid="uid://cpat5vctx80kq"]
+
+[ext_resource type="Script" path="res://Scripts/alegria.gd" id="1_bcq3m"]
+[ext_resource type="Texture2D" uid="uid://c677bsmweba7u" path="res://Assets/Sprites/TileMap/tile_0026.png" id="2_64jv0"]
+[ext_resource type="Texture2D" uid="uid://ri4bq0b5uni5" path="res://Assets/Sprites/TileMap/tile_0049.png" id="4_fgtay"]
+[ext_resource type="Texture2D" uid="uid://cm3ft7qv4a3ed" path="res://Assets/Sprites/TileMap/tile_0050.png" id="5_mbv3f"]
+[ext_resource type="Texture2D" uid="uid://ultaktyp7j2a" path="res://Assets/Sprites/divertidamente/alegria1.png" id="6_bxsqu"]
+[ext_resource type="FontFile" uid="uid://bkiesmupxgaa0" path="res://Assets/Fonts/halo_dek.ttf" id="7_iflks"]
+[ext_resource type="Texture2D" uid="uid://dn7pyu8uhrlg0" path="res://Assets/Sprites/divertidamente/alegria2.png" id="7_obirx"]
+[ext_resource type="Texture2D" uid="uid://k8j1qdelonnr" path="res://Assets/Sprites/TileMap/balloon_left.png" id="7_t8tax"]
+[ext_resource type="Script" path="res://Scripts/balloon.gd" id="8_j1yay"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_brq64"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_bxsqu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_obirx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.5
+}]
+
+[node name="Alegria" type="Node2D"]
+scale = Vector2(0.9, 0.9)
+script = ExtResource("1_bcq3m")
+metadata/_edit_group_ = true
+
+[node name="Base" type="Node2D" parent="."]
+scale = Vector2(0.9, 0.9)
+
+[node name="caixa" type="Sprite2D" parent="Base"]
+position = Vector2(-21.2963, -14.5)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_64jv0")
+
+[node name="caixa2" type="Sprite2D" parent="Base"]
+position = Vector2(-8.4963, -14.5)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_64jv0")
+
+[node name="caixa3" type="Sprite2D" parent="Base"]
+position = Vector2(-12.2963, -27.3)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_64jv0")
+
+[node name="chao" type="Sprite2D" parent="Base"]
+position = Vector2(-27, 0)
+texture = ExtResource("4_fgtay")
+
+[node name="chao2" type="Sprite2D" parent="Base"]
+position = Vector2(-9, 0)
+texture = ExtResource("4_fgtay")
+
+[node name="chao3" type="Sprite2D" parent="Base"]
+position = Vector2(9, 0)
+texture = ExtResource("4_fgtay")
+
+[node name="chao4" type="Sprite2D" parent="Base"]
+position = Vector2(27, 0)
+texture = ExtResource("5_mbv3f")
+
+[node name="Balloon" type="Sprite2D" parent="."]
+position = Vector2(24, -88)
+texture = ExtResource("7_t8tax")
+script = ExtResource("8_j1yay")
+
+[node name="Label" type="Label" parent="Balloon"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.5
+offset_top = -54.0
+offset_right = -3.5
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_iflks")
+theme_override_font_sizes/font_size = 7
+text = "TESTE"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(14, -32)
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_brq64")
+autoplay = "default"

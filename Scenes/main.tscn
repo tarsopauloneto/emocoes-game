@@ -1,0 +1,110 @@
+[gd_scene load_steps=21 format=3 uid="uid://vhbleufuyrsg"]
+
+[ext_resource type="PackedScene" uid="uid://b8mq7bc2l4u46" path="res://Scenes/player.tscn" id="1_emg7k"]
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_yqkov"]
+[ext_resource type="PackedScene" uid="uid://c7x78waastrn7" path="res://Scenes/platform.tscn" id="2_01cog"]
+[ext_resource type="PackedScene" uid="uid://opi2hhxbqgkh" path="res://Scenes/spring_platform.tscn" id="3_rip1q"]
+[ext_resource type="PackedScene" uid="uid://vr2pxouqbl2h" path="res://Scenes/cloud_platform.tscn" id="4_opvhm"]
+[ext_resource type="PackedScene" uid="uid://davlwxc8jeeeo" path="res://Scenes/coin.tscn" id="6_vmgql"]
+[ext_resource type="PackedScene" uid="uid://dgjj7uubf7pau" path="res://Scenes/bg.tscn" id="6_yms0o"]
+[ext_resource type="PackedScene" uid="uid://b3donmyifvexl" path="res://Scenes/enemy.tscn" id="7_ci6xe"]
+[ext_resource type="PackedScene" uid="uid://cpat5vctx80kq" path="res://Scenes/alegria.tscn" id="7_sm4re"]
+[ext_resource type="FontFile" uid="uid://bkiesmupxgaa0" path="res://Assets/Fonts/halo_dek.ttf" id="7_tqrge"]
+[ext_resource type="PackedScene" uid="uid://cv0bdidoelev7" path="res://Scenes/tristeza.tscn" id="8_7jvx2"]
+[ext_resource type="Texture2D" uid="uid://bd2cqmfaax2k0" path="res://Assets/Sprites/Extra/btn_left-normal.png" id="9_4urew"]
+[ext_resource type="PackedScene" uid="uid://dx40kn50y17oo" path="res://Scenes/nojinho.tscn" id="9_tbe6k"]
+[ext_resource type="Texture2D" uid="uid://crsp3ocruwp6o" path="res://Assets/Sprites/Extra/btn_left-pressed.png" id="10_3epxf"]
+[ext_resource type="PackedScene" uid="uid://cdj0xp5ifdh2y" path="res://Scenes/medo.tscn" id="10_jcovl"]
+[ext_resource type="PackedScene" uid="uid://cyfgru410ga1r" path="res://Scenes/raiva.tscn" id="11_gcydi"]
+[ext_resource type="Texture2D" uid="uid://byws22mnrwuyi" path="res://Assets/Sprites/Extra/btn_right-normal.png" id="11_vp7dw"]
+[ext_resource type="Texture2D" uid="uid://coohepriyod1a" path="res://Assets/Sprites/Extra/btn_right-pressed.png" id="12_vuntk"]
+[ext_resource type="AudioStream" uid="uid://k51wbbrg4iya" path="res://Assets/Sfx/alegria_music.mp3" id="15_60h1n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a13s1"]
+size = Vector2(180, 20)
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_yqkov")
+platform_scene = Array[PackedScene]([ExtResource("2_01cog"), ExtResource("3_rip1q"), ExtResource("4_opvhm"), ExtResource("7_ci6xe")])
+coin_scene = ExtResource("6_vmgql")
+alegria_scene = ExtResource("7_sm4re")
+outras_cenas = Array[PackedScene]([ExtResource("8_7jvx2"), ExtResource("9_tbe6k"), ExtResource("10_jcovl"), ExtResource("11_gcydi")])
+
+[node name="Bg" parent="." instance=ExtResource("6_yms0o")]
+
+[node name="PlatformContainer" type="Node2D" parent="."]
+
+[node name="Platform" parent="PlatformContainer" instance=ExtResource("2_01cog")]
+position = Vector2(90, 300)
+
+[node name="Player" parent="." instance=ExtResource("1_emg7k")]
+position = Vector2(90, 293.5)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(89, 160)
+
+[node name="PlatformCleaner" type="Area2D" parent="Camera2D"]
+position = Vector2(0, 200)
+collision_layer = 0
+collision_mask = 15
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/PlatformCleaner"]
+shape = SubResource("RectangleShape2D_a13s1")
+debug_color = Color(0.882353, 0, 0.811765, 0.419608)
+
+[node name="Score" type="Label" parent="Camera2D"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = -154.0
+offset_right = 20.0
+offset_bottom = -128.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("7_tqrge")
+theme_override_font_sizes/font_size = 18
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Coins" type="Label" parent="Camera2D"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = -134.0
+offset_right = 20.0
+offset_bottom = -111.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("7_tqrge")
+theme_override_font_sizes/font_size = 12
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="CanvasLayer" parent="."]
+
+[node name="btn_left" type="TouchScreenButton" parent="Buttons"]
+position = Vector2(12, 280)
+scale = Vector2(0.8, 0.8)
+texture_normal = ExtResource("9_4urew")
+texture_pressed = ExtResource("10_3epxf")
+action = "ui_left"
+
+[node name="btn_right" type="TouchScreenButton" parent="Buttons"]
+position = Vector2(143, 280)
+scale = Vector2(0.8, 0.8)
+texture_normal = ExtResource("11_vp7dw")
+texture_pressed = ExtResource("12_vuntk")
+action = "ui_right"
+
+[node name="alegria_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_60h1n")
+volume_db = 5.0
+
+[connection signal="body_entered" from="Camera2D/PlatformCleaner" to="." method="_on_platform_cleaner_body_entered"]

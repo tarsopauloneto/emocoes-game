@@ -1,0 +1,79 @@
+[gd_scene load_steps=10 format=3 uid="uid://civrf7k14lo0s"]
+
+[ext_resource type="Script" path="res://Scripts/title_screen.gd" id="1_ilg1p"]
+[ext_resource type="Texture2D" uid="uid://c4wo3cuayflio" path="res://Assets/Sprites/Extra/game_title.png" id="1_o1mid"]
+[ext_resource type="Texture2D" uid="uid://bopbbyhisbyai" path="res://Assets/Sprites/Extra/btn_play-normal.png" id="1_owygb"]
+[ext_resource type="PackedScene" uid="uid://dgjj7uubf7pau" path="res://Scenes/bg.tscn" id="2_f4fc6"]
+[ext_resource type="Texture2D" uid="uid://cvdidhuan3fvf" path="res://Assets/Sprites/Extra/btn_play-pressed.png" id="2_hxajm"]
+[ext_resource type="Texture2D" uid="uid://csye1cqhbcp7c" path="res://Assets/Sprites/Extra/btn_quit-normal.png" id="3_3vw1t"]
+[ext_resource type="Texture2D" uid="uid://ga4rqa07nd55" path="res://Assets/Sprites/Extra/btn_quit-pressed.png" id="4_6eebq"]
+[ext_resource type="FontFile" uid="uid://bkiesmupxgaa0" path="res://Assets/Fonts/halo_dek.ttf" id="7_ppjee"]
+[ext_resource type="AudioStream" uid="uid://d28pjmier3w7x" path="res://Assets/Sfx/game_over_sound.wav" id="9_qh6c7"]
+
+[node name="ScreenTitle" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_ilg1p")
+
+[node name="Bg" parent="." instance=ExtResource("2_f4fc6")]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -75.0
+offset_top = 15.0
+offset_right = 75.0
+offset_bottom = 110.0
+grow_horizontal = 2
+texture = ExtResource("1_o1mid")
+expand_mode = 1
+
+[node name="Buttons" type="HBoxContainer" parent="."]
+layout_mode = 2
+offset_top = 120.0
+offset_right = 180.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="start" type="TouchScreenButton" parent="Buttons"]
+position = Vector2(52, 10)
+scale = Vector2(0.9, 0.9)
+texture_normal = ExtResource("1_owygb")
+texture_pressed = ExtResource("2_hxajm")
+
+[node name="quit" type="TouchScreenButton" parent="Buttons"]
+position = Vector2(100, 10)
+scale = Vector2(0.9, 0.9)
+texture_normal = ExtResource("3_3vw1t")
+texture_pressed = ExtResource("4_6eebq")
+
+[node name="Highscore" type="Label" parent="."]
+layout_mode = 2
+offset_left = 57.0
+offset_top = 190.0
+offset_right = 124.0
+offset_bottom = 205.0
+theme_override_colors/font_color = Color(0, 0.784314, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0.282353, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("7_ppjee")
+theme_override_font_sizes/font_size = 14
+text = "HIGHSCORE:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="game_over_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_qh6c7")
+pitch_scale = 1.2
+
+[connection signal="pressed" from="Buttons/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Buttons/quit" to="." method="_on_quit_pressed"]

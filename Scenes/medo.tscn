@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdj0xp5ifdh2y"]
+
+[ext_resource type="PackedScene" uid="uid://cpat5vctx80kq" path="res://Scenes/alegria.tscn" id="1_r20uu"]
+[ext_resource type="Texture2D" uid="uid://ch2lbsagy1ngq" path="res://Assets/Sprites/divertidamente/medo1.png" id="2_526og"]
+[ext_resource type="Texture2D" uid="uid://d15st1jupdq58" path="res://Assets/Sprites/divertidamente/medo2.png" id="3_uuni7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tc75h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_526og")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_uuni7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.5
+}]
+
+[node name="Medo" instance=ExtResource("1_r20uu")]
+
+[node name="Balloon" parent="." index="1"]
+position = Vector2(22, -82)
+frases = ["esta ficando desafiador, ne ?", "confio em voce !"]
+
+[node name="AnimatedSprite2D" parent="." index="2"]
+position = Vector2(14, -29.5)
+sprite_frames = SubResource("SpriteFrames_tc75h")
+frame_progress = 0.734077

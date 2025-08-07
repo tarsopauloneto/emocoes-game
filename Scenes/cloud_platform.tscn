@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://vr2pxouqbl2h"]
+
+[ext_resource type="Script" path="res://Scripts/cloud_platform.gd" id="1_cg8ed"]
+[ext_resource type="Texture2D" uid="uid://ublj437a4qay" path="res://Assets/Sprites/TileMap/tile_0153.png" id="1_ptjea"]
+[ext_resource type="Texture2D" uid="uid://cb4optivkohc4" path="res://Assets/Sprites/TileMap/tile_0155.png" id="2_aksku"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r5e6f"]
+size = Vector2(36, 14)
+
+[node name="CloudPlatform" type="StaticBody2D" groups=["platform"]]
+scale = Vector2(0.9, 0.75)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_cg8ed")
+metadata/_edit_group_ = true
+
+[node name="left_cloud" type="Sprite2D" parent="."]
+position = Vector2(-9, 0)
+texture = ExtResource("1_ptjea")
+
+[node name="right_cloud" type="Sprite2D" parent="."]
+position = Vector2(9, 0)
+texture = ExtResource("2_aksku")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_r5e6f")
+one_way_collision = true
+debug_color = Color(0.937255, 0, 0.623529, 0.419608)

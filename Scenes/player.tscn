@@ -1,0 +1,69 @@
+[gd_scene load_steps=9 format=3 uid="uid://b8mq7bc2l4u46"]
+
+[ext_resource type="Texture2D" uid="uid://dagrrtciobfjo" path="res://Assets/Sprites/divertidamente/riley_jump.png" id="1_8k33c"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_l0p42"]
+[ext_resource type="Texture2D" uid="uid://vd50r7pisq6e" path="res://Assets/Sprites/divertidamente/riley_land.png" id="2_bihv0"]
+[ext_resource type="AudioStream" uid="uid://c86rjegkxipal" path="res://Assets/Sfx/jump.wav" id="4_ku642"]
+[ext_resource type="AudioStream" uid="uid://cu5072j23mfbi" path="res://Assets/Sfx/spring.wav" id="5_fvbkq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0sw1h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8k33c")
+}],
+"loop": false,
+"name": &"riley_jump",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_bihv0")
+}],
+"loop": false,
+"name": &"riley_land",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tvoby"]
+size = Vector2(45, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jhp52"]
+size = Vector2(60, 4)
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+scale = Vector2(0.35, 0.35)
+collision_mask = 14
+script = ExtResource("1_l0p42")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -46)
+sprite_frames = SubResource("SpriteFrames_0sw1h")
+animation = &"riley_land"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -40)
+shape = SubResource("RectangleShape2D_tvoby")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-1, 0)
+collision_mask = 14
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, -0.999999)
+shape = SubResource("RectangleShape2D_jhp52")
+debug_color = Color(0.929412, 0, 0.662745, 0.419608)
+
+[node name="Sfx" type="Node" parent="."]
+
+[node name="jump_sound" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("4_ku642")
+pitch_scale = 1.5
+
+[node name="spring_sound" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("5_fvbkq")
+volume_db = 5.0
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

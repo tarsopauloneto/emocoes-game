@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://cv0bdidoelev7"]
+
+[ext_resource type="PackedScene" uid="uid://cpat5vctx80kq" path="res://Scenes/alegria.tscn" id="1_ug4db"]
+[ext_resource type="Texture2D" uid="uid://bhbybnu7sreqw" path="res://Assets/Sprites/TileMap/tile_0145.png" id="3_78lnr"]
+[ext_resource type="Texture2D" uid="uid://c337vfynvmn4f" path="res://Assets/Sprites/TileMap/tile_0082.png" id="4_0fid3"]
+[ext_resource type="Texture2D" uid="uid://bnhb4amkbaf0u" path="res://Assets/Sprites/TileMap/tile_0126.png" id="4_p2mnn"]
+[ext_resource type="Texture2D" uid="uid://t0itmvg4w02a" path="res://Assets/Sprites/TileMap/tile_0083.png" id="5_gyjw5"]
+[ext_resource type="Texture2D" uid="uid://drsx037faxglr" path="res://Assets/Sprites/divertidamente/tristeza1.png" id="6_gomuo"]
+[ext_resource type="Texture2D" uid="uid://cw458kn8lhh5j" path="res://Assets/Sprites/divertidamente/tristeza2.png" id="7_j2mvg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d2vbh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_gomuo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_j2mvg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.5
+}]
+
+[node name="Tristeza" instance=ExtResource("1_ug4db")]
+
+[node name="caixa" parent="Base" index="0"]
+position = Vector2(-27, -16)
+scale = Vector2(1, 1)
+texture = ExtResource("5_gyjw5")
+
+[node name="caixa2" parent="Base" index="1"]
+position = Vector2(-26, -31.6)
+texture = ExtResource("3_78lnr")
+
+[node name="caixa3" parent="Base" index="2"]
+position = Vector2(-10, -14)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("4_p2mnn")
+
+[node name="chao" parent="Base" index="3"]
+texture = ExtResource("4_0fid3")
+
+[node name="chao2" parent="Base" index="4"]
+texture = ExtResource("4_0fid3")
+
+[node name="chao3" parent="Base" index="5"]
+texture = ExtResource("4_0fid3")
+
+[node name="chao4" parent="Base" index="6"]
+texture = ExtResource("5_gyjw5")
+
+[node name="Balloon" parent="." index="1"]
+position = Vector2(24, -76)
+frases = ["nao desista !", "senao vou ficar triste ..."]
+
+[node name="AnimatedSprite2D" parent="." index="2"]
+position = Vector2(12, -26.5)
+sprite_frames = SubResource("SpriteFrames_d2vbh")

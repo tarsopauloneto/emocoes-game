@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://b3donmyifvexl"]
+
+[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_dte53"]
+[ext_resource type="Texture2D" uid="uid://dk70w37k3875l" path="res://Assets/Sprites/divertidamente/tile_0024.png" id="1_e8jyi"]
+[ext_resource type="Texture2D" uid="uid://6rt4sy47mimp" path="res://Assets/Sprites/divertidamente/tile_0025.png" id="2_m8ag8"]
+[ext_resource type="Texture2D" uid="uid://bnuhsbfoujyk2" path="res://Assets/Sprites/divertidamente/tile_0026.png" id="3_fjb27"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cmcno"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_e8jyi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_m8ag8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fjb27")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w53y8"]
+size = Vector2(20, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qpaix"]
+size = Vector2(20, 6.99999)
+
+[node name="Enemy" type="StaticBody2D" groups=["enemy"]]
+scale = Vector2(0.9, 0.9)
+collision_layer = 4
+script = ExtResource("1_dte53")
+jump_force = 1.0
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cmcno")
+autoplay = "default"
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_w53y8")
+one_way_collision = true
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 4
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_qpaix")
+debug_color = Color(0.87451, 0, 0.835294, 0.419608)
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

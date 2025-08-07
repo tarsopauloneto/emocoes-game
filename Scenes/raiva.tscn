@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://cyfgru410ga1r"]
+
+[ext_resource type="PackedScene" uid="uid://cpat5vctx80kq" path="res://Scenes/alegria.tscn" id="1_lu45f"]
+[ext_resource type="Texture2D" uid="uid://dx2thfm2ojf8l" path="res://Assets/Sprites/divertidamente/raiva1.png" id="2_5i0q1"]
+[ext_resource type="Texture2D" uid="uid://cm1sg8b0rpbbq" path="res://Assets/Sprites/divertidamente/raiva2.png" id="3_ia557"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5fcg4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_5i0q1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ia557")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.5
+}]
+
+[node name="Raiva" instance=ExtResource("1_lu45f")]
+
+[node name="Balloon" parent="." index="1"]
+position = Vector2(26, -68)
+frases = ["hahaha", "vamos ver se voce e bom mesmo !"]
+
+[node name="AnimatedSprite2D" parent="." index="2"]
+position = Vector2(17, -22.5)
+scale = Vector2(0.35, 0.35)
+sprite_frames = SubResource("SpriteFrames_5fcg4")
+frame_progress = 0.491224
